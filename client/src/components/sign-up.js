@@ -44,6 +44,7 @@ class Signup extends Component {
 					console.log('successful signup')
 					this.setState({ //redirect to login page
 						redirectTo: '/login'
+						
 					})
 				} else {
 					console.log('email already in use')
@@ -176,10 +177,10 @@ class Signup extends Component {
 							/>
 						</div>
 					</div>		
-					<div className="form-group ">
+					<div className="form-group1 ">
 						<div className="col-7"></div>
 						<button
-							className="btn btn-primary col-1 col-mr-auto"
+							className="btn btn-primary col-2 col-mr-auto"
 							onClick={this.handleSubmit}
 							type="submit"
 						>Sign up</button>
