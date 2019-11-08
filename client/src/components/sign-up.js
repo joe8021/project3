@@ -5,9 +5,14 @@ class Signup extends Component {
 	constructor() {
 		super()
 		this.state = {
-			username: '',
+			email: '',
 			password: '',
 			confirmPassword: '',
+			first: '',
+			last: '',
+			age: '',
+			weight: '',
+			height: '',
 
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,13 +25,18 @@ class Signup extends Component {
 	}
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
-		console.log(this.state.username)
+		console.log(this.state.email)
 		event.preventDefault()
 
 		//request to server to add a new username/password
 		axios.post('/user/', {
-			username: this.state.username,
-			password: this.state.password
+			email: this.state.email,
+			password: this.state.password,
+			first: this.state.first,
+			last: this.state.last,
+			age: this.state.age,
+			weight: this.state.weight,
+			height: this.state.height
 		})
 			.then(response => {
 				console.log(response)
@@ -36,7 +46,7 @@ class Signup extends Component {
 						redirectTo: '/login'
 					})
 				} else {
-					console.log('username already taken')
+					console.log('email already in use')
 				}
 			}).catch(error => {
 				console.log('signup error: ')
@@ -53,15 +63,45 @@ class Signup extends Component {
 				<form className="form-horizontal">
 					<div className="form-group">
 						<div className="col-1 col-ml-auto">
-							<label className="form-label" htmlFor="username">Username</label>
+							<label className="form-label" htmlFor="email">Email</label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-input"
+								type="email"
+								id="email"
+								name="email"
+								placeholder="jon@doe.com"
+								value={this.state.email}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>
+					<div className="form-group">
+						<div className="col-1 col-ml-auto">
+							<label className="form-label" htmlFor="first">First</label>
 						</div>
 						<div className="col-3 col-mr-auto">
 							<input className="form-input"
 								type="text"
-								id="username"
-								name="username"
-								placeholder="Username"
-								value={this.state.username}
+								id="first"
+								name="first"
+								placeholder="first name"
+								value={this.state.first}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>
+					<div className="form-group">
+						<div className="col-1 col-ml-auto">
+							<label className="form-label" htmlFor="last">Last</label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-input"
+								type="text"
+								id="last"
+								name="last"
+								placeholder="last name"
+								value={this.state.last}
 								onChange={this.handleChange}
 							/>
 						</div>
@@ -80,6 +120,62 @@ class Signup extends Component {
 							/>
 						</div>
 					</div>
+					<div className="form-group">
+						<div className="col-1 col-ml-auto">
+							<label className="form-label" htmlFor="confirmPassword">Confirm Password</label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-input"
+								placeholder="confirm password"
+								type="confirmPassword"
+								name="confirmPassword"
+								value={this.state.confirmPassword}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>	
+					<div className="form-group">
+						<div className="col-1 col-ml-auto">
+							<label className="form-label" htmlFor="age">Age </label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-input"
+								placeholder="22"
+								type="number"
+								name="age"
+								value={this.state.age}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>
+					<div className="form-group">
+						<div className="col-1 col-ml-auto">
+							<label className="form-label" htmlFor="weight">Weight </label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-input"
+								placeholder="180"
+								type="number"
+								name="weight"
+								value={this.state.weight}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>	
+					<div className="form-group">
+						<div className="col-1 col-ml-auto">
+							<label className="form-label" htmlFor="height">Height </label>
+						</div>
+						<div className="col-3 col-mr-auto">
+							<input className="form-input"
+								placeholder="72"
+								type="number"
+								name="height"
+								value={this.state.height}
+								onChange={this.handleChange}
+							/>
+						</div>
+					</div>		
 					<div className="form-group ">
 						<div className="col-7"></div>
 						<button

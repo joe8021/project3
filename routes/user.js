@@ -7,22 +7,34 @@ router.post('/', (req, res) => {
     console.log('user signup');
 
     // const { username, password } = req.body
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
-    console.log(username, password)
+    const first = req.body.first;
+    const last = req.body.last;
+    const age = req.body.age;
+    const weight = req.body.weight; 
+    const height = req.body.height; 
+
+    console.log(email, password)
     // ADD VALIDATION
-    User.findOne({ username: username }, (err, user) => {
+    User.findOne({ email: email }, (err, user) => {
         if (err) {
             console.log('User.js post error: ', err)
         } else if (user) {
             res.json({
-                error: `Sorry, already a user with the username: ${username}`
+                error: `Sorry, already a user with the email: ${email} already exists!`
             })
         }
         else {
             const newUser = new User({
-                username: username,
-                password: password
+                email: email,
+                password: password,
+                first: first,
+                last:last,
+                age: age,
+                weight: weight,
+                height: height,
+
             })
             newUser.save((err, savedUser) => {
                 if (err) return res.json(err)
@@ -43,7 +55,7 @@ router.post(
     (req, res) => {
         console.log('logged in', req.user);
         var userInfo = {
-            username: req.user.username
+            email: req.user.email
         };
         res.send(userInfo);
     }
@@ -51,7 +63,6 @@ router.post(
 
 router.get('/', (req, res, next) => {
     console.log('===== user!!======')
-    console.log(req.user)
     if (req.user) {
         res.json({ user: req.user })
     } else {
