@@ -58,7 +58,7 @@ class Navbar extends Component {
                                 </section>
                             )}
                     </div>
-                        <h1 className="App-title">MERN Passport</h1>
+                        <h1 className="App-title">Get Buff with Victor</h1>
                 </header>
             </div>
 
