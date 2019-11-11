@@ -6,13 +6,18 @@ import {
 import "../components/ProfileCard.css"
 // import profilepic from '../components/images/profilepic'
 
-
+const ImgStyle = {
+    imgResize: {
+        width: 150,
+        heigth: 100,
+    }
+}
 
 const ProfileCard = (props) => {
   return (
     <div>
       <Card>
-        {/* <CardImg top width="100%" src = "https://www.shutterstock.com/image-vector/default-avatar-profile-icon-grey-photo-518740768" alt="Card image cap" /> */}
+        <CardImg style = {ImgStyle.imgResize} src = "https://image.flaticon.com/icons/svg/21/21294.svg" alt="Profile Image" />
         <CardBody className="textAlign">
           <CardTitle>Name</CardTitle>
           <CardSubtitle>Goal Weight</CardSubtitle>
