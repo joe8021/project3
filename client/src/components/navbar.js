@@ -61,7 +61,7 @@ class Navbar extends Component {
                                 </section>
                             )}
                     </div>
-                        <h1 className="App-title">Get Buff with Victor</h1>
+                        <h1 className="App-title">FitFix</h1>
                 </header>
             </div>
 
