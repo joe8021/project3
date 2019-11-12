@@ -17,8 +17,7 @@ class Signup extends Component{
 			height: '',
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
-		//this.handlelogin = this.handlelogin.bind(this)
+		this.handleChange = this.handleChange.bind(this)		//this.handlelogin = this.handlelogin.bind(this)
 	}
 
 	myAccount(){
@@ -34,7 +33,8 @@ class Signup extends Component{
 		this.setState({
 			[event.target.name]: event.target.value
 		})
-	}
+	};
+
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.email)
@@ -51,7 +51,7 @@ class Signup extends Component{
 			height: this.state.height
 		})
 			.then(response => {
-				console.log("HERE IT IS" + response)
+				// console.log("HERE IT IS" + response)
 				// console.log(db.fitness_users.find({},{"email":1}))
 				if (response.data.errmsg)  {
 					console.log(response.data.errmsg);
@@ -66,6 +66,11 @@ class Signup extends Component{
 					//console.log('email already in use')
 				}
 				else{
+					this.props.updateUser({
+						loggedIn: true,
+						email: response.data.email
+					})
+					console.log(this.state.loggedIn);
 					this.myAccount();
 				}
 			}).catch(error => {
