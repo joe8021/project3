@@ -51,6 +51,10 @@ class App extends Component {
     })
   }
 
+  reDirect(){
+
+  }
+
   render() {
     return (
       <div className="App">
