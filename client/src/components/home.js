@@ -5,6 +5,7 @@ import { Parallax, ParallaxBanner } from 'react-scroll-parallax';
 import {
     Jumbotron, Container, Button, CardFooter
 } from 'reactstrap';
+import Fade from 'react-reveal/Fade';
 import '../App.css'
 
 
@@ -24,11 +25,15 @@ class Home extends Component {
             width: '25%'
         }
 
+        const startButton = {
+            marginTop: '50'
+        }
+
         return (
             <ParallaxProvider>
                 <div>
 
-                    <Parallax className="custom-class" x={[-50, 50]} tagOuter="figure">
+                    <Parallax className="custom-class" x={[-60,25]} tagOuter="figure">
                         <div style={wrapper}>
                             <Jumbotron fluid>
                                 <Container fluid>
@@ -47,13 +52,11 @@ class Home extends Component {
                                 amount: 0.5,
                             },
                         ]}
-                        style={{
-                            height: '800px',
-                        }}
+
                     >
                     </ParallaxBanner>
 
-                    <Parallax className="custom-class" x={[50, -50]} tagOuter="figure">
+                    <Parallax className="custom-class" x={[100, 1]} tagOuter="figure">
                         <div style={wrapper}>
                             <Jumbotron fluid>
                                 <Container fluid>
@@ -72,9 +75,7 @@ class Home extends Component {
                                 amount: 0.5,
                             },
                         ]}
-                        style={{
-                            height: '800px',
-                        }}
+                  
                     >
                     </ParallaxBanner>
 
@@ -82,7 +83,7 @@ class Home extends Component {
 
 
 
-                    <Parallax className="custom-class" x={[-50, 50]} tagOuter="figure">
+                    <Parallax className="custom-class" x={[-60, 32]} tagOuter="figure">
                         <div style={wrapper}>
                             <Jumbotron fluid>
                                 <Container fluid>
@@ -98,29 +99,25 @@ class Home extends Component {
 
                             {
                                 image: "https://i.ibb.co/smYpHD7/active-adult-athlete-416778.jpg",
-                                amount: 0.5,
+                                amount: 0.1,
                             },
-                        ]}
-                        style={{
-                            height: '800px',
-                        }}
+
+                        ]} 
                     >
+                        <Fade bottom>
+                            <Button style={buttonWidth} color="primary" size="lg">Start Now!</Button>
+                        </Fade>
+
                     </ParallaxBanner>
 
-                    <Parallax className="custom-class" x={[9, -100]} tagOuter="figure">
-                        <div>
-                            {/* <Jumbotron fluid> */}
-                            {/* <Container fluid> */}
-                            <Button style={buttonWidth} color="primary" size="lg">Start Now!</Button>
-                            {/* </Container> */}
-                            {/* </Jumbotron> */}
-                        </div>
-                    </Parallax>
+                    {/* <Parallax className="custom-class" x={[9, -100]} tagOuter="figure"> */}
+                 
+                    {/* </Parallax> */}
                 </div>
 
 
                 <CardFooter>
-                    Get Buff with Victor <span role="img" aria-label="flex">💪</span> This is a Footer <span role="img" aria-label="foot">🦶</span>
+                    FitFix <span role="img" aria-label="flex">💪</span> This is a Footer <span role="img" aria-label="foot">🦶</span>
                 </CardFooter>
 
 

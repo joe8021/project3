@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { withRouter } from 'react-router';
 
-class Signup extends Component {
+
+class Signup extends Component{
 	constructor() {
 		super()
 		this.state = {
@@ -13,22 +15,32 @@ class Signup extends Component {
 			age: '',
 			weight: '',
 			height: '',
-
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
-		this.handleChange = this.handleChange.bind(this)
+		this.handleChange = this.handleChange.bind(this)		//this.handlelogin = this.handlelogin.bind(this)
 	}
+
+	myAccount(){
+		this.props.history.push('/myaccount');
+	}
+
+	handlelogin(){
+		//event.preventDefault();
+		this.props.history.push('/login');
+	};
+
 	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value
 		})
-	}
+	};
+
 	handleSubmit(event) {
 		console.log('sign-up handleSubmit, username: ')
 		console.log(this.state.email)
 		event.preventDefault()
 
-		//request to server to add a new username/password
+		//request to server to add a new user
 		axios.post('/user/', {
 			email: this.state.email,
 			password: this.state.password,
@@ -39,15 +51,27 @@ class Signup extends Component {
 			height: this.state.height
 		})
 			.then(response => {
-				console.log(response)
-				if (!response.data.errmsg) {
-					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
-						
+				// console.log("HERE IT IS" + response)
+				// console.log(db.fitness_users.find({},{"email":1}))
+				if (response.data.errmsg)  {
+					console.log(response.data.errmsg);
+				} else if (this.state.email.trim() == '' 
+					|| this.state.first.trim() == '' 
+					|| this.state.last.trim() == ''
+					|| this.state.age.trim() == ''
+					|| this.state.weight.trim() == ''
+					|| this.state.height.trim() == ''
+					) {
+						alert("Please fill out all fields");
+					//console.log('email already in use')
+				}
+				else{
+					this.props.updateUser({
+						loggedIn: true,
+						email: response.data.email
 					})
-				} else {
-					console.log('email already in use')
+					console.log(this.state.loggedIn);
+					this.myAccount();
 				}
 			}).catch(error => {
 				console.log('signup error: ')
@@ -128,7 +152,7 @@ class Signup extends Component {
 						<div className="col-3 col-mr-auto">
 							<input className="form-input"
 								placeholder="confirm password"
-								type="confirmPassword"
+								type="password"
 								name="confirmPassword"
 								value={this.state.confirmPassword}
 								onChange={this.handleChange}
@@ -182,14 +206,29 @@ class Signup extends Component {
 						<button
 							className="btn btn-primary col-2 col-mr-auto"
 							onClick={this.handleSubmit}
-							type="submit"
+						type="submit"
 						>Sign up</button>
+					</div>
+					{/* <br></br> */}
+				{/* Or Login */}
+				<div>Or</div>
+					{/* <br></br> */}
+					<div className="form-group1 ">
+						<div className="col-7"></div>
+						<button
+							className="btn btn-primary col-2 col-mr-auto"
+							onClick={() => this.handlelogin(false)}
+							type="submit"
+						>Login</button>
 					</div>
 				</form>
 			</div>
+			
 
 		)
 	}
 }
 
-export default Signup
+
+export default withRouter(Signup)
+
