@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css';
 import axios from 'axios'
+import { withRouter } from 'react-router';
 
 class Navbar extends Component {
     constructor() {
@@ -19,6 +20,7 @@ class Navbar extends Component {
                     loggedIn: false,
                     username: null
                 })
+                this.props.history.push('/');
             }
         }).catch(error => {
             console.log('Logout error')
@@ -70,4 +72,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default withRouter(Navbar)
