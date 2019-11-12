@@ -8,7 +8,7 @@ const userSchema = new Schema({
 
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    first: { type: String, required: true },
+    first: { type: String, unique: false,required: true },
     last: { type: String, required: true },
     age: { type: String, required: true },
     weight: { type: String,  required: true },

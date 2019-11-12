@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+// import { withRouter } from 'react-router';
 
 class LoginForm extends Component {
     constructor() {
@@ -18,6 +19,12 @@ class LoginForm extends Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
+        })
+    }
+
+    signUp() {
+        this.setState({
+            redirectTo: '/signup'
         })
     }
 
@@ -39,6 +46,7 @@ class LoginForm extends Component {
                         loggedIn: true,
                         email: response.data.email
                     })
+                    console.log(this.props);
                     // update the state to redirect to home
                     this.setState({
                         redirectTo: '/myaccount'
@@ -96,6 +104,15 @@ class LoginForm extends Component {
 
                                 onClick={this.handleSubmit}
                                 type="submit">Login</button>
+                        </div>
+                        <div className="form-group ">
+                            <div className="col-7"></div>
+                            <button
+                                className="btn btn-primary col-1 col-mr-auto"
+                                // onClick={() => this.handlelogin(false)}
+                                onClick={() => this.signUp(false)}
+                                type="submit"
+                            >Sign Up</button>
                         </div>
                     </form>
                 </div>
