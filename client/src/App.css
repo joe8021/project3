@@ -6,6 +6,10 @@
   color: #222!important;
 }
 
+.react-reveal > button.btn.btn-primary.btn-lg {
+  margin-top: 200px!important;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
