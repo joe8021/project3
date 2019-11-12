@@ -7,12 +7,12 @@ mongoose.promise = Promise
 const userSchema = new Schema({
 
     email: { type: String, unique: true, required: true },
-    password: { type: String, unique: false, required: true },
-    first: { type: String, unique: true, required: true },
-    last: { type: String, unique: true, required: true },
-    age: { type: String, unique: true, required: true },
-    weight: { type: String, unique: true, required: true },
-    height: { type: String, unique: true, required: true }
+    password: { type: String, required: true },
+    first: { type: String, required: true },
+    last: { type: String, required: true },
+    age: { type: String, required: true },
+    weight: { type: String,  required: true },
+    height: { type: String, required: true }
 })
 
 // Define schema methods
