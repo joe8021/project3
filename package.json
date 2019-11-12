@@ -8,6 +8,7 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -35,6 +36,5 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "spectre.css": "^0.5.8"
-  },
-  "proxy": "http://localhost:3000"
+  }
 }

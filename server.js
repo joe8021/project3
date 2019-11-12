@@ -5,12 +5,14 @@ const mongoose = require('mongoose');
 const session = require('express-session')
 const dbConnection = require('./connection')
 const MongoStore = require('connect-mongo')(session)
+const db = require("./models")
 const passport = require('./passport');
 const app = express();
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 // Route requires
 const user = require('./routes/user')
+const ex = require("./routes/api/exercise")
 
 // MIDDLEWARE
 app.use(morgan('dev'))
@@ -41,14 +43,15 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // calls the deserializeUser
 
-app.use(express.static(path.join(__dirname, "client", "build")))
-// Routes
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.use(express.static(path.join(__dirname, "client", "build")))
+// // Routes
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 
 // Routes
 app.use('/user', user)
+app.use('/api', ex)
 
 // Starting Server 
 app.listen(PORT, () => {
