@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+// schema for Exercises Collection
 const exerciseSchema = new Schema({
   name: { type: String, required: true },
   instructions: { type: String, required: true },
