@@ -48,7 +48,6 @@ router.post(
     '/login',
     function (req, res, next) {
         console.log('routes/user.js, login, req.body: ');
-        console.log(req.body)
         next()
     },
     passport.authenticate('local'),
@@ -61,10 +60,15 @@ router.post(
     }
 )
 
+router.get('/user', function(req,res){
+    console.log("user check!!!" + req);
+})
+
 router.get('/', (req, res, next) => {
     console.log('===== user!!======')
     if (req.user) {
         res.json({ user: req.user })
+        console.log("****************")
     } else {
         res.json({ user: null })
     }

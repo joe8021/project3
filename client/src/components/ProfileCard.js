@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
-import "../components/ProfileCard.css"
+import "../components/ProfileCard.css";
+import API from '../utils/API';
+
 // import profilepic from '../components/images/profilepic'
+
+
 
 const ImgStyle = {
     imgResize: {
@@ -13,7 +17,40 @@ const ImgStyle = {
     }
 }
 
-const ProfileCard = (props) => {
+class ProfileCard extends Component {
+  state = {
+    users: [],
+    first: '',
+    last: '',
+    age: '',
+    weight: '',
+    height: '',
+  };
+
+  
+
+  componentDidMount(){
+    this.loadUser()
+  }
+
+  loadUser = () => {
+    console.log("working");
+    
+    API.getUserData()
+      .then(res => this.setState({users:res.data})
+    )
+    .catch(err => console.log(err));
+  };
+
+  
+
+
+
+
+
+
+  render(){
+    
   return (
     <div>
       <Card>
@@ -26,7 +63,8 @@ const ProfileCard = (props) => {
         </CardBody>
       </Card>
     </div>
-  );
+  )
+  }
 };
 
 export default ProfileCard;
