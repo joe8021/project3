@@ -13,6 +13,7 @@ const path = require("path");
 // Route requires
 const user = require('./routes/user')
 const ex = require("./routes/api/exercise")
+const users = require("./routes/api/users")
 
 // MIDDLEWARE
 app.use(morgan('dev'))
@@ -52,6 +53,7 @@ app.use(passport.session()) // calls the deserializeUser
 // Routes
 app.use('/user', user)
 app.use('/api', ex)
+app.use('/api', users)
 
 // Starting Server 
 app.listen(PORT, () => {

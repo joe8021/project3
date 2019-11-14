@@ -7,10 +7,16 @@ import {
 } from 'reactstrap';
 import Fade from 'react-reveal/Fade';
 import '../App.css'
+// import { withRouter } from 'react-router';
 
 
 
 class Home extends Component {
+
+    handlelogin() {
+        //event.preventDefault();
+        this.props.history.push('/login');
+    };
 
     render() {
 
@@ -105,7 +111,7 @@ class Home extends Component {
                         ]} 
                     >
                         <Fade bottom>
-                            <Button style={buttonWidth} color="primary" size="lg">Start Now!</Button>
+                            <Button style={buttonWidth} color="primary" size="lg" >Start Now!</Button>
                         </Fade>
 
                     </ParallaxBanner>
