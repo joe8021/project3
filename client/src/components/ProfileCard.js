@@ -1,4 +1,4 @@
-// import React from 'react';
+import React, {Component} from 'react';
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
@@ -6,12 +6,13 @@ import {
 import "../components/ProfileCard.css"
 import "../components/ProfileCard.css";
 import API from '../utils/API';
-import React, { Component } from 'react'
 import { withRouter } from 'react-router';
 
 // const User = require('../../../models')
 
 // import profilepic from '../components/images/profilepic'
+
+
 
 const ImgStyle = {
     imgResize: {
@@ -77,8 +78,8 @@ class ProfileCard extends Component {
         </CardBody>
       </Card>
     </div>
-  );
+  )
+  }
 };
-}
 
 export default withRouter(ProfileCard);

@@ -71,6 +71,7 @@ class Signup extends Component{
 						email: response.data.email
 					})
 					console.log(this.state.loggedIn);
+					console.log(this.state.first);
 					this.myAccount();
 				}
 			}).catch(error => {

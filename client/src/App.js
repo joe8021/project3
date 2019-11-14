@@ -35,9 +35,9 @@ class App extends Component {
     axios.get('/user/').then(response => {
       // console.log(response.data.user.name)
       console.log('Get user response: ')
-      console.log(response.data)
+      // console.log(response.data)
       if (response.data.user) {
-        console.log(response.data.user);
+        console.log("DATA:" + response.data);
         console.log('Get User: There is a user saved in the server session: ')
         
 
@@ -56,10 +56,6 @@ class App extends Component {
     })
   }
 
-  reDirect(){
-
-  }
-
   render() {
     return (
       <div className="App">
@@ -73,6 +69,7 @@ class App extends Component {
         <Route
           exact path="/"
           component={Home} />
+
         <Route
           path="/login"
           render={() =>
