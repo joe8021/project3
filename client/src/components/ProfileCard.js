@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import "../components/ProfileCard.css"
+import "../components/ProfileCard.css";
+import API from '../utils/API';
+import { withRouter } from 'react-router';
+
+// const User = require('../../../models')
+
 // import profilepic from '../components/images/profilepic'
+
+
 
 const ImgStyle = {
     imgResize: {
@@ -13,20 +21,65 @@ const ImgStyle = {
     }
 }
 
-const ProfileCard = (props) => {
+class ProfileCard extends Component {
+  state = {
+    users: [],
+    first: "",
+    last: ""
+  };
+
+  
+
+  componentDidMount(){
+    this.loadUser()
+  }
+
+  loadUser = () => {
+    console.log("working");
+    
+    API.getUserData()
+      .then(res => this.setState({users:res.data, first: "", last: ""})
+    )
+    .catch(err => console.log(err));
+  };
+
+  handleNewWorkoutClick = () => {
+    //event.preventDefault();
+    this.props.history.push('/workout');
+  };
+
+  
+
+  render(){
+        // console.log(this.state.users.map(user => user = user.age));
+        // this.displayUser();
+        console.log(this.state.users.first);
+        console.log(this.state.users.last);
+    var first = this.state.users.first;
+    var last = this.state.users.last;
+    var age = this.state.users.age;
+    var weight = this.state.users.weight;
+    var height = this.state.users.height;
+        
+
+    
   return (
     <div>
       <Card>
         <CardImg style = {ImgStyle.imgResize} src = "https://image.flaticon.com/icons/svg/21/21294.svg" alt="Profile Image" />
         <CardBody className="textAlign">
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Goal Weight</CardSubtitle>
+          
+          <CardTitle> <h1>{first + " " + last}</h1> </CardTitle>
+          <CardSubtitle>Age: <h3>{age}</h3></CardSubtitle>
+          <CardSubtitle>Height: <h4>{height}</h4></CardSubtitle>
+          <CardSubtitle>Weight: <h4>{weight}</h4></CardSubtitle>
           <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
+          <Button onClick={()=>this.handleNewWorkoutClick()}>Start New Workout!</Button>
         </CardBody>
       </Card>
     </div>
-  );
+  )
+  }
 };
 
-export default ProfileCard;
+export default withRouter(ProfileCard);

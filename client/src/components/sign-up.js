@@ -20,7 +20,7 @@ class Signup extends Component{
 		this.handleChange = this.handleChange.bind(this)		//this.handlelogin = this.handlelogin.bind(this)
 	}
 
-	myAccount(){
+	myAccount = () => {
 		this.props.history.push('/myaccount');
 	}
 
@@ -71,6 +71,7 @@ class Signup extends Component{
 						email: response.data.email
 					})
 					console.log(this.state.loggedIn);
+					console.log(this.state.first);
 					this.myAccount();
 				}
 			}).catch(error => {
