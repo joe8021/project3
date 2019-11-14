@@ -6,13 +6,16 @@ import Signup from './components/sign-up'
 import LoginForm from './components/login-form'
 import Navbar from './components/navbar'
 import Home from './components/home'
+import ProfilePage from './pages/ProfilePage';
+import WorkoutPage from './pages/WorkoutPage'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      email: null,
+      name: ''
     }
 
     this.getUser = this.getUser.bind(this)
@@ -30,24 +33,31 @@ class App extends Component {
 
   getUser() {
     axios.get('/user/').then(response => {
+      console.log(response.data.user.name)
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data.user) {
         console.log(response.data.user);
         console.log('Get User: There is a user saved in the server session: ')
+        
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.email,
+          name: response.data.user.name
         })
       } else {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
-          username: null
+          email: null
         })
       }
     })
+  }
+
+  reDirect(){
+
   }
 
   render() {
@@ -57,8 +67,8 @@ class App extends Component {
         <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
         {this.state.loggedIn &&
-          <p>Join the party, {this.state.username}!</p>
-        }
+          <p>Ready to workout {this.state.name}?</p>
+      }
         {/* Routes to different components */}
         <Route
           exact path="/"
@@ -73,9 +83,24 @@ class App extends Component {
         <Route
           path="/signup"
           render={() =>
-            <Signup />}
+            <Signup 
+              updateUser={this.updateUser}
+              />}
         />
+        
+        <Route
+          path="/myaccount"
+          render={() =>
+          <ProfilePage />}
+          />
 
+        
+        <Route
+          path="/workout"
+          render={() =>
+          <WorkoutPage />}
+          />
+          
       </div>
     );
   }

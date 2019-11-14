@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../logo.svg';
 import '../App.css';
 import axios from 'axios'
+import { withRouter } from 'react-router';
 
 class Navbar extends Component {
     constructor() {
@@ -20,6 +20,7 @@ class Navbar extends Component {
                     loggedIn: false,
                     username: null
                 })
+                this.props.history.push('/');
             }
         }).catch(error => {
             console.log('Logout error')
@@ -39,28 +40,30 @@ class Navbar extends Component {
                         {loggedIn ? (
                             <section className="navbar-section">
                                 <Link to="#" className="btn btn-link text-secondary" onClick={this.logout}>
-                                    <span className="text-secondary">logout</span></Link>
+                                    <span className="text-secondary">Logout</span></Link>
+                                <Link to="/myaccount" className="btn btn-link">
+                                    <span className="text-secondary">My Account</span>
+                                </Link>
+                                <Link to="/workout" className="btn btn-link">
+                                    <span className="text-secondary">Workout Page</span>
+                                </Link>
 
                             </section>
                         ) : (
                                 <section className="navbar-section">
                                     <Link to="/" className="btn btn-link text-secondary">
-                                        <span className="text-secondary">home</span>
+                                        <span className="text-secondary">Home</span>
                                     </Link>
                                     <Link to="/login" className="btn btn-link text-secondary">
-                                        <span className="text-secondary">login</span>
+                                        <span className="text-secondary">Login</span>
                                     </Link>
                                     <Link to="/signup" className="btn btn-link">
-                                        <span className="text-secondary">sign up</span>
+                                        <span className="text-secondary">Sign Up</span>
                                     </Link>
                                 </section>
                             )}
                     </div>
-                    <div className="col-4 col-mr-auto">
-                        <div id="top-filler"></div>
-                        <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">MERN Passport</h1>
-                    </div>
+                        <h1 className="App-title">FitFix</h1>
                 </header>
             </div>
 
@@ -69,4 +72,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default withRouter(Navbar)
