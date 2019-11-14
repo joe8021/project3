@@ -8,9 +8,16 @@ import {
 import Fade from 'react-reveal/Fade';
 import '../App.css'
 
+import { withRouter } from 'react-router';
+
 
 
 class Home extends Component {
+
+    handleStartClick = () => {
+        //event.preventDefault();
+        this.props.history.push('/login');
+    };
 
     render() {
 
@@ -104,8 +111,8 @@ class Home extends Component {
 
                         ]} 
                     >
-                        <Fade bottom>
-                            <Button style={buttonWidth} color="primary" size="lg">Start Now!</Button>
+                        <Fade bottom>                          
+                            <Button onClick={()=>this.handleStartClick()} style={buttonWidth} color="primary" size="lg"> Start Now!</Button>
                         </Fade>
 
                     </ParallaxBanner>
@@ -126,4 +133,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default withRouter(Home)
