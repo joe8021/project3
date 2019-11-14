@@ -10,9 +10,12 @@ module.exports = {
     //         .catch(err => res.status(422).json(err));
     // },
     findOne: function(req,res){
-        db.Users
+        console.log("hit");
+        db.User
             .findOne(req.session.passport.user)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     }
+    
 }
+console.log("hit again");

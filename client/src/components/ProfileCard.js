@@ -7,6 +7,8 @@ import "../components/ProfileCard.css"
 import "../components/ProfileCard.css";
 import API from '../utils/API';
 import React, { Component } from 'react'
+import { withRouter } from 'react-router';
+
 // const User = require('../../../models')
 
 // import profilepic from '../components/images/profilepic'
@@ -39,6 +41,12 @@ class ProfileCard extends Component {
     )
     .catch(err => console.log(err));
   };
+
+  handleNewWorkoutClick = () => {
+    //event.preventDefault();
+    this.props.history.push('/workout');
+  };
+
   
 
   render(){
@@ -65,7 +73,7 @@ class ProfileCard extends Component {
           <CardSubtitle>Height: <h4>{height}</h4></CardSubtitle>
           <CardSubtitle>Weight: <h4>{weight}</h4></CardSubtitle>
           <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
+          <Button onClick={()=>this.handleNewWorkoutClick()}>Start New Workout!</Button>
         </CardBody>
       </Card>
     </div>
@@ -73,4 +81,4 @@ class ProfileCard extends Component {
 };
 }
 
-export default ProfileCard;
+export default withRouter(ProfileCard);

@@ -20,7 +20,7 @@ class Signup extends Component{
 		this.handleChange = this.handleChange.bind(this)		//this.handlelogin = this.handlelogin.bind(this)
 	}
 
-	myAccount(){
+	myAccount = () => {
 		this.props.history.push('/myaccount');
 	}
 
