@@ -124,7 +124,7 @@ class Home extends Component {
 
 
                 <CardFooter>
-                    FitFix <span role="img" aria-label="flex">💪</span> This is a Footer <span role="img" aria-label="foot">🦶</span>
+                <span role="img" aria-label="flex">💪</span> This is a Footer <span role="img" aria-label="foot">🦶</span>
                 </CardFooter>
 
 

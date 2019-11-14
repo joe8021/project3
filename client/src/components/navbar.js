@@ -63,7 +63,7 @@ class Navbar extends Component {
                                 </section>
                             )}
                     </div>
-                        <h1 className="App-title">FitFix</h1>
+                        <h1 className="App-title"><img src="https://i.imgur.com/5J5f4Kn.png" alt="fitfixlogo"/></h1>
                 </header>
             </div>
 
