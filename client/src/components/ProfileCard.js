@@ -68,7 +68,7 @@ class ProfileCard extends Component {
     
   return (
     <div>
-      <Card>
+      <Card style={{width: '40%'}}>
         <CardImg style = {ImgStyle.imgResize} src = "https://image.flaticon.com/icons/svg/21/21294.svg" alt="Profile Image" />
         <CardBody className="textAlign">
           
