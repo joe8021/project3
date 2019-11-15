@@ -8,4 +8,8 @@ router.route("/users")
     // .post(userController.create);
     .get(userController.findOne)
 
+
+router.route("/saveExercises/:userid")
+    .post(userController.saveExercise)
+    
 module.exports = router;

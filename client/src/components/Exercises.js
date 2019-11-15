@@ -3,20 +3,56 @@ import {
   Card, CardImg, CardText, CardBody, CardLink,
   CardTitle, CardSubtitle
 } from 'reactstrap';
+import API from '../utils/API';
+import Axios from 'axios';
 
 
-const Exercises = (props) => {
- 
+class Exercises extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  state = {
+    users: [],
+    id: ''
+  };
+
+
+  componentDidMount() {
+    this.loadUser()
+  }
+
+  loadUser = () => {
+    console.log("working");
+
+    API.getUserData()
+      .then(res => 
+        {
+          console.log(res.data._id);
+        Axios.post("/api/saveExercises/"+res.data._id).then(data => console.log(data)
+        )
+      
+            }    )
+      .catch(err => console.log(err));
+     
+  };
+
+  
+
+ render(){
+
+
 
   return (
     <div>
-      {props.currentCategory.map(e =>
+      {this.props.currentCategory.map(e =>
         <div key={e.name}>
 
           <Card style={{borderRadius: ' 5%', marginBottom: '20px', borderColor: 'black'}}>
             <CardBody>
               <CardTitle><h1>{e.name}</h1></CardTitle>
               <CardSubtitle><h2>{e.type}</h2></CardSubtitle>
+              <button>Save</button>
             </CardBody >
           
             <CardBody>
@@ -57,6 +93,7 @@ const Exercises = (props) => {
 
     </div>
   );
+      }
 };
 
 export default Exercises;

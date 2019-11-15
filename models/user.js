@@ -12,7 +12,8 @@ const userSchema = new Schema({
     last: { type: String, required: true },
     age: { type: String, required: true },
     weight: { type: String,  required: true },
-    height: { type: String, required: true }
+    height: { type: String, required: true },
+    savedExercises: { type: Array }
 })
 
 // Define schema methods

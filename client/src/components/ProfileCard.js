@@ -60,7 +60,7 @@ class ProfileCard extends Component {
     var age = this.state.users.age;
     var weight = this.state.users.weight;
     var height = this.state.users.height;
-        
+    var savedWorkouts = [];        
 
     
   return (
@@ -73,7 +73,7 @@ class ProfileCard extends Component {
           <CardSubtitle>Age: <h3>{age}</h3></CardSubtitle>
           <CardSubtitle>Height: <h4>{height}</h4></CardSubtitle>
           <CardSubtitle>Weight: <h4>{weight}</h4></CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <CardText><div>{savedWorkouts}</div>Saved Workouts</CardText>
           <Button onClick={()=>this.handleNewWorkoutClick()}>Start New Workout!</Button>
         </CardBody>
       </Card>
