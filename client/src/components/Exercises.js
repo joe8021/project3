@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Card, CardImg, CardText, CardBody, CardLink,
-  CardTitle, CardSubtitle
+  CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import API from '../utils/API';
 import Axios from 'axios';
@@ -14,7 +14,8 @@ class Exercises extends React.Component {
 
   state = {
     users: [],
-    id: ''
+    id: '',
+    name: ''
   };
 
 
@@ -22,20 +23,24 @@ class Exercises extends React.Component {
     this.loadUser()
   }
 
-  loadUser = () => {
+  loadUser = (e) => {
     console.log("working");
+    console.log(e);
 
     API.getUserData()
       .then(res => 
         {
-          console.log(res.data._id);
-        Axios.post("/api/saveExercises/"+res.data._id).then(data => console.log(data)
+          console.log("BUTTON WORK");
+        Axios.post("/api/saveExercises/" + res.data._id, {'savedExercises':e}).then(data => this.state.id = res.data._id
         )
       
             }    )
       .catch(err => console.log(err));
+    // console.log(this.state.id);
      
   };
+
+  
 
   
 
@@ -47,12 +52,12 @@ class Exercises extends React.Component {
     <div>
       {this.props.currentCategory.map(e =>
         <div key={e.name}>
-
+          {this.state.name = e.name}
           <Card style={{borderRadius: ' 5%', marginBottom: '20px', borderColor: 'black'}}>
             <CardBody>
               <CardTitle><h1>{e.name}</h1></CardTitle>
               <CardSubtitle><h2>{e.type}</h2></CardSubtitle>
-              <button>Save</button>
+              <Button onClick={() => this.loadUser(e.name)}><div>{"Save"}</div></Button>
             </CardBody >
           
             <CardBody>

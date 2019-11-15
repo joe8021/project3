@@ -25,7 +25,8 @@ class ProfileCard extends Component {
   state = {
     users: [],
     first: "",
-    last: ""
+    last: "",
+    exercises: "",
   };
 
   
@@ -38,9 +39,10 @@ class ProfileCard extends Component {
     console.log("working");
     
     API.getUserData()
-      .then(res => this.setState({users:res.data, first: "", last: ""})
-    )
+      .then(res => this.setState({users:res.data, first: "", last: "", exercises: ""}))
+      // .then(res => console.log(res.data))
     .catch(err => console.log(err));
+    
   };
 
   handleNewWorkoutClick = () => {
@@ -60,7 +62,8 @@ class ProfileCard extends Component {
     var age = this.state.users.age;
     var weight = this.state.users.weight;
     var height = this.state.users.height;
-    var savedWorkouts = [];        
+    var savedWorkouts = this.state.users.savedExercises;    
+    console.log(this.state.users.savedExercises);    
 
     
   return (
@@ -70,10 +73,11 @@ class ProfileCard extends Component {
         <CardBody className="textAlign">
           
           <CardTitle> <h1>{first + " " + last}</h1> </CardTitle>
-          <CardSubtitle>Age: <h3>{age}</h3></CardSubtitle>
-          <CardSubtitle>Height: <h4>{height}</h4></CardSubtitle>
-          <CardSubtitle>Weight: <h4>{weight}</h4></CardSubtitle>
-          <CardText><div>{savedWorkouts}</div>Saved Workouts</CardText>
+          <CardSubtitle><h4>Age:</h4><h6>{age}</h6></CardSubtitle>
+          <CardSubtitle><h4>Height:</h4><h6>{height}</h6></CardSubtitle>
+          <CardSubtitle><h4>Weight:</h4><h6>{weight}</h6></CardSubtitle>
+          <CardSubtitle><h4>Saved Exercises:</h4> <h6>{" "  + savedWorkouts}</h6></CardSubtitle>
+          <br></br>
           <Button onClick={()=>this.handleNewWorkoutClick()}>Start New Workout!</Button>
         </CardBody>
       </Card>
