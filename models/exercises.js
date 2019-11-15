@@ -6,6 +6,7 @@ const exerciseSchema = new Schema({
   instructions: { type: String, required: true },
   demo: { type: String, required: true},
   type: { type: String, required: true},
+  muscleTarget: { type: String, required: true}
   
 });
 
