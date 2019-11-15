@@ -19,12 +19,10 @@ const Exercises = (props) => {
             <CardBody>
               <CardTitle><h1>{e.name}</h1></CardTitle>
               <CardSubtitle><h2>{e.type}</h2></CardSubtitle>
+              <img style={{ borderRadius: ' 5%', height: '300px', width: '400px'}} src={e.demo}/>
             </CardBody>
           
             <CardBody>
-
-            <CardImg style={{ borderRadius: ' 5%', height: '300px', width: '400px'}} src={e.demo}/>
-
               <CardText>
                 
                 <p>{e.instructions}</p>
